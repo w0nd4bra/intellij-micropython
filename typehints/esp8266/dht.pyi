@@ -19,7 +19,7 @@ The DHT driver is implemented in software and works on all pins:
 
 
 class DHT11:
-    ''
+
     def humidity(self) -> int:
         ...
 
@@ -31,7 +31,7 @@ class DHT11:
 
 
 class DHT22:
-    ''
+
     def humidity(self) -> float:
         ...
 
@@ -43,7 +43,9 @@ class DHT22:
 
 
 class DHTBase:
-    ''
+    def __init__(self, pin: int):
+        ...
+
     def measure(self):
         ...
 
