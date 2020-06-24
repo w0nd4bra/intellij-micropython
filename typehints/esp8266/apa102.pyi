@@ -13,9 +13,21 @@ Use the apa102 module:
     r, g, b, brightness = apa[0] # get first pixel colour
 
 """
-from .. micropython.machine import Pin
+from ..micropython.machine import Pin
+
 
 class APA102:
+    """
+    The RGB colour data, as well as a brightness level, is sent to the APA102 in a certain order.
+    Usually this is (Red, Green, Blue, Brightness).
+    If you are using one of the newer APA102C LEDs the green and blue are swapped,
+    so the order is (Red, Blue, Green, Brightness).
+    The APA102 has more of a square lens while the APA102C has more of a round one.
+    If you are using a APA102C strip and would prefer to provide colours in RGB order instead of RBG,
+    you can customise the tuple colour order like so:
+
+    strip.ORDER = (0, 2, 1, 3)
+    """
 
     def __init__(self, clk: Pin, data: Pin, n_pixel: int) -> None:
         """
@@ -29,13 +41,25 @@ class APA102:
         """
         ...
 
-    def fill(self):
+    def fill(self, rgb: (int, int, int, int)) -> None:
+        """
+        Fill all the pixels with given RGB - (Red, Green, Blue, Brightness) - tuple.
+        The order of the tuple depends on the value set in APA102.ORDER.
+
+        For example turn off all the LEDs:
+
+            strip.fill((0, 0, 0, 0))
+            strip.write()
+
+        :param rgb: Tuple with the RGB-Code.
+        :type rgb: tuple
+        """
         ...
 
-    def write(self):
+    def write(self) -> None:
         """
         Write data to all the pixels in  the object.
         """
         ...
 
-    # ORDER = None
+    ORDER: (int, int, int, int)
