@@ -13,14 +13,29 @@ Use the apa102 module:
     r, g, b, brightness = apa[0] # get first pixel colour
 
 """
-
+from .. micropython.machine import Pin
 
 class APA102:
 
-    ORDER = None
+    def __init__(self, clk: Pin, data: Pin, n_pixel: int) -> None:
+        """
+        :param clk: Pin to drive the clock.
+        :param data: Pin to drive the data.
+        :param n_pixel: Number of Pixels(LEDs).
+
+        :type clk: Pin
+        :type data: Pin
+        :type n_pixel: int
+        """
+        ...
+
     def fill(self):
         ...
 
     def write(self):
+        """
+        Write data to all the pixels in  the object.
+        """
         ...
 
+    # ORDER = None
