@@ -6,7 +6,7 @@ They require precise timing to control them and there is a special neopixel modu
 
 """
 from ..micropython.machine import Pin
-from typing import Optional
+from typing import Optional, Tuple
 
 class NeoPixel:
     def __init__(self, pin: Pin, n: int, bpp: Optional[int]) -> None:
@@ -36,13 +36,13 @@ class NeoPixel:
         """
         ...
 
-    def fill(self, rgb: tuple) -> None:
+    def fill(self, rgb: Tuple) -> None:
         """
         Fill all the pixels with given RGB-tuple.
         The order of the tuple depends on the value set in NeoPixel.ORDER.
 
         :param rgb: Tuple with the RGB-Code.
-        :type rgb: tuple
+        :type rgb: Tuple
         """
         ...
 
@@ -52,5 +52,5 @@ class NeoPixel:
         """
         ...
 
-    ORDER: tuple
+    ORDER: Tuple
 
