@@ -17,6 +17,7 @@ Be sure to put a 4.7k pull-up resistor on the data line. Note that the convert_t
 """
 
 from .. esp8266.onewire import OneWire
+from typing import List
 
 class DS18X20:
     def __init__(self, ow: OneWire) -> None:
@@ -35,10 +36,10 @@ class DS18X20:
     def read_temp(self) -> float:
         ...
 
-    def scan(self) -> list:
+    def scan(self) -> List:
         """
         :return: ROMs
-        :rtype: list
+        :rtype: List
         """
         ...
 
