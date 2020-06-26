@@ -15,7 +15,7 @@ The OneWire driver is implemented in software and works on all pins:
 """
 
 from ..micropython.machine import Pin
-from typing import Optional
+from typing import Optional, List
 
 class OneWire:
 
@@ -43,12 +43,12 @@ class OneWire:
     def reset(self, required: Optional[bool]):
         ...
 
-    def scan(self) -> list:
+    def scan(self) -> List:
         """
         Scans for connected devices and returns them.
 
         :return: List of devices.
-        :rtype: list
+        :rtype: List
         """
         ...
 
