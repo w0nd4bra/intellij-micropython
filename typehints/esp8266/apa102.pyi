@@ -41,7 +41,7 @@ class APA102:
         """
         ...
 
-    def fill(self, rgb: (int, int, int, int)) -> None:
+    def fill(self, rgb: tuple) -> None:
         """
         Fill all the pixels with given RGB - (Red, Green, Blue, Brightness) - tuple.
         The order of the tuple depends on the value set in APA102.ORDER.
@@ -62,4 +62,4 @@ class APA102:
         """
         ...
 
-    ORDER: (int, int, int, int)
+    ORDER: tuple
