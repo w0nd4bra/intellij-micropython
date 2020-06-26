@@ -14,6 +14,7 @@ Use the apa102 module:
 
 """
 from ..micropython.machine import Pin
+from typing import Tuple
 
 
 class APA102:
@@ -41,7 +42,7 @@ class APA102:
         """
         ...
 
-    def fill(self, rgb: tuple) -> None:
+    def fill(self, rgb: Tuple) -> None:
         """
         Fill all the pixels with given RGB - (Red, Green, Blue, Brightness) - tuple.
         The order of the tuple depends on the value set in APA102.ORDER.
@@ -62,4 +63,4 @@ class APA102:
         """
         ...
 
-    ORDER: tuple
+    ORDER: Tuple
