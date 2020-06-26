@@ -36,7 +36,7 @@ class NeoPixel:
         """
         ...
 
-    def fill(self, rgb: tuple):
+    def fill(self, rgb: tuple) -> None:
         """
         Fill all the pixels with given RGB-tuple.
         The order of the tuple depends on the value set in NeoPixel.ORDER.
@@ -46,7 +46,7 @@ class NeoPixel:
         """
         ...
 
-    def write(self):
+    def write(self) -> None:
         """
         Write data to all the pixels in the object.
         """
