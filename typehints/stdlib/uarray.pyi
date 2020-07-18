@@ -32,7 +32,7 @@ class array:
     def extend(self, iterable: Iterable) -> None:
         """
         Append new elements as contained in iterable to the end of array, growing it.
-        
+
         :param iterable: Iterable element.
         :type iterable: Iterable
         """
