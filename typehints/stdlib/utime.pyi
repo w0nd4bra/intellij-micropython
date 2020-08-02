@@ -2,24 +2,19 @@
 This module implements a subset of the corresponding CPython module, as
 described below. For more information, refer to the original CPython
 documentation: ``time``.
-
 The ``utime`` module provides functions for getting the current time and
 date, measuring time intervals, and for delays.
-
 Time Epoch: Unix port uses standard for POSIX systems epoch of **1970-01-01 00:00:00 UTC**.
 However, embedded ports use epoch of **2000-01-01 00:00:00 UTC**.
-
 Maintaining actual calendar date/time: This requires a Real Time Clock (RTC). On systems
 with underlying OS (including some RTOS), an RTC may be implicit. Setting and maintaining
 actual calendar time is responsibility of OS/RTOS and is done outside of MicroPython, it
 just uses OS API to query date/time. On baremetal ports however system time depends on
 ``machine.RTC() object``. The current calendar time may be set using
 ``machine.RTC().datetime(tuple)`` function, and maintained by following means:
-
 * By a backup battery (which may be an additional, optional component for a particular board).
 * Using networked time protocol (requires setup by a port/user).
 * Set manually by a user on each power-up (many boards then maintain RTC time across hard resets, though some may require setting it again in such case).
-
 If actual calendar time is not maintained with a system/MicroPython RTC,
 functions below which require reference to current absolute time may
 behave not as expected.
@@ -31,7 +26,6 @@ from typing import Optional
 def sleep_ms(ms: int) -> None:
     """
     Delay for given number of milliseconds, should be positive or 0.
-
     :param ms: Delay in milliseconds
     :type ms: int
     """
@@ -40,7 +34,6 @@ def sleep_ms(ms: int) -> None:
 def sleep_us(us: int) -> None:
     """
     Delay for given number of microseconds, should be positive or 0.
-
     :param us: Delay in microseconds
     :type us: int
     """
@@ -49,7 +42,6 @@ def sleep_us(us: int) -> None:
 def ticks_ms() -> int:
     """Returns an increasing millisecond counter with an arbitrary reference
     point, that wraps around after some value.
-
     The wrap-around value is not explicitly exposed, but we will refer to it
     as TICKS_MAX to simplify discussion. Period of the values is
     TICKS_PERIOD = TICKS_MAX + 1. TICKS_PERIOD is guaranteed to be a power
@@ -60,7 +52,6 @@ def ticks_ms() -> int:
     non-negative values are used. For the most part, you should treat values
     returned by these functions as opaque. The only operations available for
     them are ticks_diff() and ticks_add() functions described below.
-
     Note: Performing standard mathematical operations (+, -) or relational
     operators (<, <=, >, >=) directly on these value will lead to invalid
     result. Performing mathematical operations and then passing their results
@@ -72,7 +63,6 @@ def ticks_ms() -> int:
 def ticks_us() -> int:
     """Returns an increasing microsecond counter with an arbitrary reference
     point, that wraps around after some value.
-
     The wrap-around value is not explicitly exposed, but we will refer to it
     as *TICKS_MAX* to simplify discussion. Period of the values is
     *TICKS_PERIOD = TICKS_MAX + 1*. *TICKS_PERIOD* is guaranteed to be a power
@@ -83,7 +73,6 @@ def ticks_us() -> int:
     non-negative values are used. For the most part, you should treat values
     returned by these functions as opaque. The only operations available for
     them are ticks_diff() and ticks_add() functions described below.
-
     Note: Performing standard mathematical operations (+, -) or relational
     operators (<, <=, >, >=) directly on these value will lead to invalid
     result. Performing mathematical operations and then passing their results
@@ -107,11 +96,9 @@ def localtime(secs: Optional[int]) -> Tuple:
     Convert a time expressed in seconds since the Epoch (see above) into an
     8-tuple which contains: (year, month, mday, hour, minute, second, weekday,
     yearday). If secs is not provided or None, then the current time from the RTC is used.
-
     Tuple constraints:
     * **year** includes the century (for example 2014).
     *
-
     :param secs:
     :return:
     """
@@ -123,9 +110,7 @@ def localtime(secs: Optional[int] = None) -> Tuple:
     8-tuple which contains: (year, month, mday, hour, minute, second, weekday,
     yearday). If secs is not provided or None, then the current time from the
     RTC is used.
-
     Tuple constraints:
-
     * **year** includes the century (for example 2014).
     * **month** is *1-12*
     * **mday** is *1-31*
@@ -134,7 +119,6 @@ def localtime(secs: Optional[int] = None) -> Tuple:
     * **second** is *0-59*
     * **weekday** is *0-6* for *Mon-Sun*
     * **yearday** is *1-366*
-
     :param secs: Specific moment in time, expressed in seconds since Epoch.
     :return: Tuple with decoded time information.
     :rtype: tuple
@@ -146,7 +130,6 @@ def mktime(time: tuple) -> int:
     This is inverse function of localtime. It’s argument is a full 8-tuple
     which expresses a time as per localtime. It returns an integer which
     is the number of seconds since Jan 1, 2000.
-
     :param time: Full 8-tuple which expresses a time as per localtime.
     :return: Amount of seconds since Epoch.
     :rtype: int
@@ -159,7 +142,6 @@ def sleep(seconds: int) -> None:
     as a floating-point number to sleep for a fractional number of seconds.
     Note that other boards may not accept a floating-point argument, for
     compatibility with them use ``sleep_ms()`` and ``sleep_us()`` functions.
-
     :param seconds: Amount of time to sleep for.
     """
     ...
@@ -175,7 +157,6 @@ def time() -> int:
     higher than second precision. If you need higher precision, use ``ticks_ms()``
     and ``ticks_us()`` functions, if you need calendar time, ``localtime()``
     without an argument is a better choice.
-
     In CPython, this function returns number of seconds since Unix epoch,
     **1970-01-01 00:00 UTC**, as a floating-point, usually having microsecond
     precision. With MicroPython, only Unix port uses the same Epoch, and if
@@ -185,7 +166,5 @@ def time() -> int:
     second precision. Some embedded hardware also lacks battery-powered RTC,
     so returns number of seconds since last power-up or from other relative,
     hardware-specific point (e.g. reset).
-
     :return: Number of seconds, as an integer, since the Epoch.
     """
-    ...
